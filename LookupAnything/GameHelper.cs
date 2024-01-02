@@ -172,12 +172,7 @@ namespace Pathoschild.Stardew.LookupAnything
             return (
                 from entry in this.Objects.Value
                 let obj = (SObject)entry.Item
-                where
-                    obj.Type != "Arch"
-                    && obj.Type != "Fish"
-                    && obj.Type != "Mineral"
-                    && obj.Type != "Cooking"
-                    && SObject.isPotentialBasicShippedCategory(obj.ItemId, obj.Category)
+                where SObject.isPotentialBasicShipped(obj.ItemId, obj.Category, obj.Type)
 
                 select new KeyValuePair<string, bool>(obj.QualifiedItemId, Game1.player.basicShipped.ContainsKey(obj.ItemId))
             );
